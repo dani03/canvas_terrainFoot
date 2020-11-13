@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
   <div class="mt-10 mx-10 flex flex-wrap py-2 rounded border-4 bg-white border-gray-300 tags">
-      <span class="flex p-2 items-center ml-4 mt-0 mr-4 rounded border-3 border-solid  bg-gray-400 tags-item" >  puissante <span class=" tag-close ml-3 cursor-pointer">X</span></span>
+      <span class="flex p-2 items-center ml-4 mt-0 mr-4 rounded border-3 border-solid border-green-400 bg-gray-400 tags-item" >  puissante <span class=" tag-close ml-3 cursor-pointer">X</span></span>
       <input
       class=" tag-input outline-none flex h-12 m-0 pl-3 w-64 font-normal focus:outline-none"
       type="text" placeholder="caracteristique de votre équipe">
@@ -17,23 +17,7 @@
   `;
 
   style.textContent = `
-        :host(.test) {
-            background-color: #ddd;
-            border-radius: 3px;
-            padding: 10px;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        :host-context(.container) {
-            padding: 30px;
-            background-color: red;
-
-            left: 0;
-            top: 0;
-            margin-top: 30px;
-            display: block;
-        }
+     
 
         .tags {
             display: flex;
@@ -83,7 +67,7 @@
       this.shadow = this.attachShadow({
         mode: 'open',
       });
-      this.shadow.appendChild(style);
+      this.shadow.appendChild(style.cloneNode(true));
       this.shadow.appendChild(template.content.cloneNode(true));
       this.tagDiv = this.shadow.querySelector('.tags');
       this.tagInput = this.shadow.querySelector('.tag-input');
@@ -111,7 +95,7 @@
         
       }
     }
-    
+
     onRemove(event){
       if(event.target.classList.contains('tag-close')){
         event.target.parentNode.remove();
